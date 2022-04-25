@@ -27,6 +27,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@typegoose/typegoose": "9.5.0",
     "@types/mongoose": "^5.11.97",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "mongoose": "6.1.7",
     "nestjs-typegoose": "^7.1.38",
     "reflect-metadata": "^0.1.13",
