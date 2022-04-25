@@ -225,3 +225,42 @@ DEFAUILT - это то, как записывается любой сервис,
 
 [![transient.jpg](https://i.postimg.cc/PJCfBgHP/transient.jpg)](https://postimg.cc/sGRRW0vr)
 
+## ExceptionFilter и Pipes
+
+[![image.jpg](https://i.postimg.cc/Z5c1yyyz/image.jpg)](https://postimg.cc/SnnZBRrg)
+
+При отправке каких либо запросов на API с клиента - они могут быть преобразованы через Pipes. В свою же очередь перед тем, как отправить данные на клиент, эти данные могут быть изменены за счёт ExceptionFilter'ов. 
+
+### Exceptions
+
+Когда происходит ExceptionFilter, то под капотом происходит следующее:
+
+[![Exceptions.jpg](https://i.postimg.cc/tRspQDnZ/Exceptions.jpg)](https://postimg.cc/3WQP2XBY)
+
+Этот exception преобразовывается Nestjs в JSON. ExceptionFilter позволяют внедрится в процесс обработки между Exception и JSON.
+
+[![Exceptions-filter.jpg](https://i.postimg.cc/YSRyhcZr/Exceptions-filter.jpg)](https://postimg.cc/v11vNKGk)
+
+Для того, чтобы сделать свой фильтр нужно создать класс, который будет инплементировать ExceptionFilter и иметь метод `сatch`. Также он должен быть навешан декоратором `@Catch`, в котором должно быть указан какими exception должны быть обработаны эти фильтры. В рамках метода `catch` он будет принимать два значения: 
+- сам exception.
+- host из которого можно получить контекст запроса. 
+
+### Pipes
+
+В Nestjs есть уже ряд существующих pipe, которые позволяют преобразовывать существующие данные. Первый это `ValidationPipe`, который занимается валидацией. Он может быть внедрён декоратором `UsePipes`. Также есть Pipe, которые можно отправить на параметры. 
+
+[![Pipes.jpg](https://i.postimg.cc/Y9ZcCKL4/Pipes.jpg)](https://postimg.cc/62rbMP0w)
+
+Под капотом `ValidationPipe` реализовывает библиотеку `validator` и класс трансформер, который позволяет преобразовывать объект в класс, а дальше валидировать свойства этого класса. Реализовывается он очень просто:
+
+[![Validation-Pipe.jpg](https://i.postimg.cc/0NtRhJ80/Validation-Pipe.jpg)](https://postimg.cc/06JBwjKz)
+
+При этом Nestjs позволяет валидировать и создавать свой `pipe`. Аналогично другим pipe необходимо имплементировать класс `PipeTransform` в своём классе и реализовать там метод `transorm`, который принимает входящие значения, которые он будет реализовывать и метаданные. Методоанные содержат данные о том, где применяется этот `pipe`, применяется он в body, params или где-то ещё, его базовый тип: строка это или что-то другое. 
+
+[![Custom-pipe.jpg](https://i.postimg.cc/7PWd3k6b/Custom-pipe.jpg)](https://postimg.cc/rz5fT75L) 
+
+### Глобальное использование
+
+Если необходимо использовать глобальные `ExceptionFilter` или `Pipe`, то его необходимо подключить к app:
+
+[![image.jpg](https://i.postimg.cc/QxLGLDrw/image.jpg)](https://postimg.cc/bdRFbKr9)

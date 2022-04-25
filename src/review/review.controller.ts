@@ -19,7 +19,7 @@ export class ReviewController {
 
   @Post('create')
   async create(@Body() dto: CreateReviewDto) {
-    this.reviewService.create(dto);
+    return this.reviewService.create(dto);
   }
 
   @Delete(':id')
