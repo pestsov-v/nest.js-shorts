@@ -14,6 +14,5 @@ jobs:
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/AveselsJS/nest.js-shorts/top-api
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           tags: "develop"
