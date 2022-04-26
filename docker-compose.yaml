@@ -8,3 +8,9 @@ services:
       - 3000:3000
     volumes:
       - ./.env:/opt/app/.env
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
