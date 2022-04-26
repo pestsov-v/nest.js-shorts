@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { BadRequestException, Body, Controller, HttpCode, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Body, Controller, HttpCode, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ALREADY_REGISTERED_ERROR } from './auth.constants';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
+import { JwtAuthGuard } from './guards/jwt.guards';
 
 @Controller('auth')
 export class AuthController {
