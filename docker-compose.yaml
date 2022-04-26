@@ -1,14 +1,10 @@
 version: '3'
 services:
-  mongo:
-    image: mongo
-    container_name: mongo
+  top.api:
+    image: top-api:latest
+    container_name: top-api
     restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
     ports: 
-      - 27017:27017
+      - 3000:3000
     volumes:
-      - ./mongo-data/data/db
-    command: --wiredTigerCacheSizeGB 1.5
+      - ./.env:/opt/app/.env
