@@ -7,7 +7,7 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
-    steps:
+    step:
       - uses: actions/checkout@master
       - name: Publish to registry
         uses: elgohr/Publish-Docker-Github-Action@v4
