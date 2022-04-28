@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { ConfigService } from '@nestjs/config';
 import { JwtModuleOptions } from '@nestjs/jwt';
 
