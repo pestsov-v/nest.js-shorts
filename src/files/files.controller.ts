@@ -3,11 +3,9 @@ import {
   HttpCode,
   Post,
   UploadedFile,
-  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guards';
 import { FileElementResponse } from './dto/file-element.response';
 import { FilesService } from './files.service';
 import { MFile } from './mfile.class';
